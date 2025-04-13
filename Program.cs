@@ -21,20 +21,30 @@ var summaries = new[]
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
-app.MapGet("/weatherforecast", () =>
+app.MapGet("/", () =>
 {
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
+    return "Hello this is Main URL";
+});
+
+app.MapGet("/get", () =>  //GET API
+{
+    return "Hello I'm Get Method";
+});
+
+app.MapPost("/post", () => //POST API
+{
+    return "Hello I'm Post Method";
+});
+
+app.MapPut("/put", () =>  //PUT API
+{
+    return "Hello I'm PUT Method";
+});
+
+app.MapDelete("/delete", () => //DELETE API
+{
+    return "Hello I'm Delete Method";
+});
 
 app.Run();
 
